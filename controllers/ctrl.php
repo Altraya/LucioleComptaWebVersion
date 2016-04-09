@@ -15,7 +15,7 @@ class Controller_Ctrl
 				try{
 					require_once 'views/page1.php';
 				}catch(Exception $e){
-					echo 'merde';
+					echo 'Erreur';
 				}
 				
 				break;
@@ -24,7 +24,6 @@ class Controller_Ctrl
 				//Utilisation des fonction du model ici
 		}
 	}
-	
 }
 
 ?>

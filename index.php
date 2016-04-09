@@ -13,8 +13,9 @@
 	//Database definition
 	try{
         $dataBase = new PDO('mysql:host='.BDD_HOST.';dbname='.BDD_NAME,BDD_USER,BDD_PW);
-    }catch (PDOException $e){
-        echo $e->getMessage();
+        $dataBase->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
+    }catch (Exception $e){
+        die('Erreur : ' . $e->getMessage());
     }
 	ModelBase::setDb($dataBase);
 
@@ -22,8 +23,6 @@
 	ob_start();
 
 	$found = false;
-
-	
 
 	//Si la variable $_SERVER['PATH_INFO'] existe
 	if (isset($_SERVER['PATH_INFO'])){
@@ -65,7 +64,25 @@
 	}
 	//Choix par defaut si l'un des tests precedents à échoué
 	if (!$found){
-		require_once 'views/home.php';
+		require_once("views/home.php");
+		require_once("models/ModelClient.class.php");
+		require_once("models/ModelArticle.class.php");
+		require_once("models/ModelFacture.class.php");
+
+		$clientData = array();
+		$articleData = array();
+		$factureData = array();
+		
+		$modC = new ModelClient();
+		$modA = new ModelArticle();
+		$modF = new ModelFacture();
+
+		$clientData = $modC->getInfoClientHomepage();
+		$articleData = $modA->getInfoArticleHomepage();
+		$factureData = $modF->getInfoFactureHomepage();
+		
+		$hView = new homeView();
+		$hView->home($clientData, $articleData, $factureData);
 	}
 	$content = ob_get_clean();
 
@@ -76,20 +93,19 @@
 	<head>
 		<title>Luciole Compta - Accounting software</title>
 		<meta charset="utf-8"/>
-		<link rel="stylesheet" href="<?=ADDRESSCSS ?>../css/metro.css">
-		<link rel="stylesheet" href="<?=ADDRESSCSS ?>../css/metro-icons.css">
-		<link rel="stylesheet" href="<?=ADDRESSCSS ?>../css/style.css">
+		<link rel="stylesheet" href="<?=ADDRESSCSS ?>/css/metro.css">
+		<link rel="stylesheet" href="<?=ADDRESSCSS ?>/css/metro-icons.css">
+		<link rel="stylesheet" href="<?=ADDRESSCSS ?>/css/style.css">
 
 
-		<script src="<?=ADDRESSCSS ?>../js/jquery.min.js"></script>
-    	<script src="<?=ADDRESSCSS ?> ../js/metro.js"></script>
-    	<script src="<?=ADDRESSCSS ?> ../js/datatables.min.js"></script>
+		<script src="<?=ADDRESSCSS ?>/js/jquery.min.js"></script>
+    	<script src="<?=ADDRESSCSS ?>/js/metro.js"></script>
+    	<script src="<?=ADDRESSCSS ?>/js/datatables.min.js"></script>
 	</head>
 	<body>
 		<?php
 			require_once 'views/menu.html';
 		?>
-
 
 		<?=$content ?>
 
