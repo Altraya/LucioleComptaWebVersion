@@ -8,16 +8,23 @@ class homeView
 	{
 		$html="";
 		$html.='
+	<div 
+		data-role="dialog" 
+		id="dialogClient" 
+		class="padding20 dialog" 
+		data-close-button="true" 
+		data-overlay="true" 
+		data-overlay-color="op-dark" 
+		data-overlay-click-close="true"
+		>
+            <h1>Simple dialog</h1>
+            <p id="dialogContent">
+                This dialog with colored overlay
+            </p>
+        <span class="dialog-close-button"></span>
+	</div>
 
 	<div class="container">
-		<div data-role="dialog" id="dialogClient" class="padding20" data-close-button="true">
-		    <h1>Simple dialog</h1>
-		    <p>
-		        Dialog :: Metro UI CSS - The front-end framework
-		        for developing projects on the web in Windows Metro Style.
-		    </p>
-		</div>
-
 		<div class="flex-grid">
 		    <div class="row cell-auto-size">
 		        <div class="cell">
@@ -50,8 +57,8 @@ class homeView
 								    		<td>'.ucfirst($client["prenom"]).'</td>
 								    		<td>'.ucfirst($client["entreprise"]).'</td>
 								    		<td class="center">'.$client["count(FACTURE.id)"].'</td>
-								    		<td class="center">
-								    			<span class="mif-chevron-right" id="openDialogClient">
+								    		<td class="center" onclick="showDialog(\'#dialogClient\')">
+								    			<span class="mif-chevron-right" >
 								    			</span>
 								    		</td>
 								    	</tr>
@@ -73,33 +80,35 @@ class homeView
 								    {
 								    	responsive: true
 									});
+
+
 								});
 
-								$("#openDialogClient").on(\'click\', function()
-								{
-									console.log("jai cliqué");
-
-									var opt = {
-								        autoOpen: false,
-								        modal: false,
-								        overlay: true,
-								        shadow: true,
-								        flat: true
-									};
-
-							        var dialog = $("#dialogClient").data(\'dialog\');
-							        
-
-							        dialog.open();
-							        console.log("Apres dialog open");
+								function showDialog(id){
+								    var dialog = $(id).data(\'dialog\');
+								    console.log("Start AJAX");
+								    $.ajax(
+						            {
+						            	type: "GET",
+						                url: "index.php?ctrl=client&method=show&id=1",
+						                dataType: "html",
+						                success: function(result)
+						                {
+						                	var html = result;
+						                	
+						                	$(\'#dialogContent\').empty();
+											$(\'#dialogContent\').append(html);;
+						                	
+						                	dialog.open();
+						                }
+						           	});
+						           	console.log("End AJAX");
 								    
-								});
-								/*
-					        	$("#openDialogClient").on(\'click\', function()
-								{
-									console.log("jai cliqué");
+								    console.log("Open ok");
+								}
 
-								    $("#dialogClient").dialog(
+								/*
+								$("#dialogClient").dialog(
 								    {
 								        overlay: true,
 								        shadow: true,
@@ -120,9 +129,7 @@ class homeView
 								           	});            
 								        }
 								    });
-
-								});
-								*/
+								    */
 						        
 							</script>
 					    </div>

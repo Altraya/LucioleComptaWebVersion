@@ -24,9 +24,23 @@
 
 	$found = false;
 
-	//Si la variable $_SERVER['PATH_INFO'] existe
-	if (isset($_SERVER['PATH_INFO'])){
-		$args = explode('/',$_SERVER['PATH_INFO']);
+	/*With this you can have index.php?ctrl=client&method=show&id=1
+	as same result as
+	index.php/client/show/1
+	*/
+	//Si la variable $_SERVER['PATH_INFO'] existe (ou qu'on souhaite faire une requete GET)
+	if (isset($_SERVER['PATH_INFO']) || isset($_GET)){
+		
+		if(isset($_SERVER['PATH_INFO']))
+		{
+			$args = explode('/',$_SERVER['PATH_INFO']);
+		}
+		elseif(isset($_GET)) //need this for ajax part on button "more" because he don't accept url like index.php/client/show/1
+		{
+			$args[1] = htmlspecialchars($_GET["ctrl"]);
+			$args[2] = htmlspecialchars($_GET["method"]);
+			$args[3] = htmlspecialchars($_GET["id"]);
+		}
 
 		//On vérifie si le chemin contient 3 arguments ou plus
 		if (count($args)>=3)
@@ -63,8 +77,12 @@
 			}
 		}
 	}
+	
 	//Choix par defaut si l'un des tests precedents à échoué
 	if (!$found){
+		
+		require_once 'views/menu.html';
+		
 		require_once("views/home.php");
 		require_once("models/ModelClient.class.php");
 		require_once("models/ModelArticle.class.php");
@@ -105,12 +123,10 @@
 		<script src="<?=ADDRESSCSS ?>/js/jquery.min.js"></script>
     	<script src="<?=ADDRESSCSS ?>/js/metro.js"></script>
     	<script src="<?=ADDRESSCSS ?>/js/datatables.min.js"></script>
-    	<script src="//cdn.datatables.net/responsive/1.0.3/js/dataTables.responsive.js"></script>
+    	<script src="<?=ADDRESSCSS ?>/js/datatablesResponsive.js"></script>
 	</head>
 	<body>
-		<?php
-			require_once 'views/menu.html';
-		?>
+		
 
 		<?=$content ?>
 

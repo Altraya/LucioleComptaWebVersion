@@ -14,8 +14,8 @@ class Controller_Client
 					require_once('views/ClientView.class.php');
 					
 					$clientV = new ClientView();
-					$content = $clientV->clientInfo("", "");
-					$clientV->show($content);
+					$test = $clientV->clientInfo("", "");
+					$clientV->show($test);
 
 				}catch(Exception $e){
 					echo "Erreur dans la tentative d'affichage des informations des clients";
