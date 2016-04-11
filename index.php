@@ -41,6 +41,7 @@
 				$params[] = $args[$i];
 			}
 			$controller_file = 'controllers/'.$controller.'.php';
+			
 			//Si le fichier du controlleur existe
 			if (file_exists($controller_file)){
 				//On l'integre dedans si ce n'est pas deja fait
@@ -94,13 +95,17 @@
 		<title>Luciole Compta - Accounting software</title>
 		<meta charset="utf-8"/>
 		<link rel="stylesheet" href="<?=ADDRESSCSS ?>/css/metro.css">
+		<link rel="stylesheet" href="<?=ADDRESSCSS ?>/css/metro-responsive.css">
 		<link rel="stylesheet" href="<?=ADDRESSCSS ?>/css/metro-icons.css">
+		<link rel="stylesheet" href="<?=ADDRESSCSS ?>/css/metro-schemes.css">
 		<link rel="stylesheet" href="<?=ADDRESSCSS ?>/css/style.css">
+		<link href="//cdn.datatables.net/responsive/1.0.3/css/dataTables.responsive.css">
 
 
 		<script src="<?=ADDRESSCSS ?>/js/jquery.min.js"></script>
     	<script src="<?=ADDRESSCSS ?>/js/metro.js"></script>
     	<script src="<?=ADDRESSCSS ?>/js/datatables.min.js"></script>
+    	<script src="//cdn.datatables.net/responsive/1.0.3/js/dataTables.responsive.js"></script>
 	</head>
 	<body>
 		<?php

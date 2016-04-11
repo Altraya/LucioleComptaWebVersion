@@ -9,8 +9,17 @@ class homeView
 		$html="";
 		$html.='
 
-		<div class="grid margin20">
-		    <div class="row cells2">
+	<div class="container">
+		<div data-role="dialog" id="dialogClient" class="padding20" data-close-button="true">
+		    <h1>Simple dialog</h1>
+		    <p>
+		        Dialog :: Metro UI CSS - The front-end framework
+		        for developing projects on the web in Windows Metro Style.
+		    </p>
+		</div>
+
+		<div class="flex-grid">
+		    <div class="row cell-auto-size">
 		        <div class="cell">
 		        	<div class="panel">
 					    <div class="heading">
@@ -41,7 +50,10 @@ class homeView
 								    		<td>'.ucfirst($client["prenom"]).'</td>
 								    		<td>'.ucfirst($client["entreprise"]).'</td>
 								    		<td class="center">'.$client["count(FACTURE.id)"].'</td>
-								    		<td class="center"><span class="mif-chevron-right"></span></td>
+								    		<td class="center">
+								    			<span class="mif-chevron-right" id="openDialogClient">
+								    			</span>
+								    		</td>
 								    	</tr>
 								    ';
 
@@ -51,14 +63,71 @@ class homeView
 							    </tbody>
 					        </table>
 
+					        
+
 					        <script>
-					        	$(document).ready(function(){
-								    $(\'#clientTable\').DataTable();
+					        	$(document).ready(function()
+					        	{
+					        		console.log("ok");
+								    $(\'#clientTable\').DataTable(
+								    {
+								    	responsive: true
+									});
 								});
-					        </script>
+
+								$("#openDialogClient").on(\'click\', function()
+								{
+									console.log("jai cliqué");
+
+									var opt = {
+								        autoOpen: false,
+								        modal: false,
+								        overlay: true,
+								        shadow: true,
+								        flat: true
+									};
+
+							        var dialog = $("#dialogClient").data(\'dialog\');
+							        
+
+							        dialog.open();
+							        console.log("Apres dialog open");
+								    
+								});
+								/*
+					        	$("#openDialogClient").on(\'click\', function()
+								{
+									console.log("jai cliqué");
+
+								    $("#dialogClient").dialog(
+								    {
+								        overlay: true,
+								        shadow: true,
+								        flat: true,
+								        title: \'Flat window\',
+								        content: \'\',
+								        onShow: function(_dialog)
+								        {
+								            $.ajax(
+								            {
+								               url: "index.php/client/show/1", 
+								               dataType: "html",
+								               success: function(result){
+								                	var html = result;
+								                	$.Dialog.content(html);
+								                	$.Dialog.open();
+								               }
+								           	});            
+								        }
+								    });
+
+								});
+								*/
+						        
+							</script>
 					    </div>
 					</div>
-		        </div>
+		        </div>  <!-- end cell1 -->
 		        <div class="cell">
 		        	<div class="panel">
 					    <div class="heading">
@@ -137,15 +206,17 @@ class homeView
 
 					        <script>
 					        	$(document).ready(function(){
-								    $(\'#factureTable\').DataTable();
+								    $(\'#factureTable\').DataTable(
+								    	{responsive: true}
+								    );
 								});
 					        </script>
 					    </div>
 					</div>
-		        </div>
+		        </div>  <!-- end cell2 -->
 		    </div>
-		    <div class="row cells2">
-		        <div class="cell">
+		    <div class="row cell-auto-size">
+		        <div class="cell flex-align-center">
 		        	<div class="panel">
 						<div class="heading">
 						    <span class="icon mif-bookmarks"></span>
@@ -186,15 +257,17 @@ class homeView
 
 					        <script>
 					        	$(document).ready(function(){
-								    $(\'#articleTable\').DataTable();
+					        		$(\'#articleTable\').DataTable( {
+									    responsive: true
+									} );
 								});
 					        </script>
 						</div>
 					</div>
-		        </div>
+		        </div> <!-- end cell3 -->
 		    </div>
 		</div>
-
+	</div>
 
 		';
 		echo($html);

@@ -2,3 +2,24 @@
 {
 	text-align : center;
 }
+
+#articleTable, #factureTable, #clientTable
+{
+	width: 100% !important;
+	/*word-break: break-all;*/
+}
+
+.container
+{
+	width: 100%;
+}
+
+.cell
+{
+	padding: 1em;
+}
+
+th
+{
+	text-align: center !important;
+}
