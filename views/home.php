@@ -131,7 +131,8 @@ class homeView
 
 			    foreach ($dataClient as $keyClient => $client) 
 			    {
-
+			    	$jsonClient = json_encode($client);
+			    	
 				    $html.='
 				    	<tr>
 				    		<td>'.strtoupper($client["nom"]).'</td>
@@ -139,7 +140,7 @@ class homeView
 				    		<td>'.ucfirst($client["entreprise"]).'</td>
 				    		<td class="center">'.$client["count(FACTURE.id)"].'</td>
 				    		<td class="center" onclick="showDialog(\'#dialogClient\')">
-				    			<span class="mif-chevron-right" >
+				    			<span class="mif-chevron-right">
 				    			</span>
 				    		</td>
 				    	</tr>

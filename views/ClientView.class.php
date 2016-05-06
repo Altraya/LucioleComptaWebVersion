@@ -36,7 +36,7 @@ class ClientView
 		echo($html);
 	}
 
-	public function formEditClient($infosClient)
+	public function formEditClient($infoClient)
 	{
 		$html="";
 		$html.='
@@ -45,8 +45,7 @@ class ClientView
 				<div class="row flex-just-end toolbar">
  				';
  					$html.= $this->toolbarAction("Client");
- 					var_dump($_POST);
- 					var_dump($_GET);
+ 					
  				$html.='
  				</div>
 		 		<div class="row cell-auto-size">
@@ -54,28 +53,28 @@ class ClientView
 						<div class="input-control text">
 						    <label>Nom</label>
 						    <span class="mif-user prepend-icon"></span>
-						    <input type="text" value="'.$client["nom"].'">
+						    <input type="text" value="'.$infoClient->getNom().'"/>
 						</div>
 					</div>
 					<div class="cell">
 						<div class="input-control text">
 						    <label>Prénom</label>
 						    <span class="mif-user prepend-icon"></span>
-						    <input type="text">
+						    <input type="text" value="'.$infoClient->getPrenom().'"/>
 						</div>
 					</div>
 					<div class="cell">
 						<div class="input-control text">
 						    <label>Entreprise</label>
 						    <span class="mif-organization prepend-icon"></span>
-						    <input type="text">
+						    <input type="text" value="'.$infoClient->getEntreprise().'"/>
 						</div>
 					</div>
 					<div class="cell">
 						<div class="input-control text">
 						    <label>Mail</label>
 						    <span class="mif-mail prepend-icon"></span>
-						    <input type="text">
+						    <input type="text" value="'.$infoClient->getEmail().'"/>
 						</div>
 					</div>
 				</div>
@@ -84,28 +83,28 @@ class ClientView
 						<div class="input-control text">
 						    <label>Adresse 1</label>
 						    <span class="mif-location prepend-icon"></span>
-						    <input type="text">
+						    <input type="text" value="'.$infoClient->getAdresse1().'"/>
 						</div>
 					</div>
 					<div class="cell">
 						<div class="input-control text">
 						    <label>Adresse 2</label>
 						    <span class="mif-location prepend-icon"></span>
-						    <input type="text">
+						    <input type="text" value="'.$infoClient->getAdresse2().'"/>
 						</div>
 					</div>
 					<div class="cell">
 						<div class="input-control text">
 						    <label>Ville</label>
 						    <span class="mif-location prepend-icon"></span>
-						    <input type="text">
+						    <input type="text" value="'.$infoClient->getVille().'"/>
 						</div>
 					</div>
 					<div class="cell">
 						<div class="input-control text">
 						    <label>Code Postal</label>
 						    <span class="mif-location prepend-icon"></span>
-						    <input type="text">
+						    <input type="text" value="'.$infoClient->getNPA().'"/>
 						</div>
 					</div>
 				</div>
@@ -114,14 +113,14 @@ class ClientView
 						<div class="input-control text">
 						    <label>Fixe</label>
 						    <span class="mif-phone prepend-icon"></span>
-						    <input type="text">
+						    <input type="text" value="'.$infoClient->getTelephone1().'"/>
 						</div>
 					</div>
 					<div class="cell">
 						<div class="input-control text">
 						    <label>Mobile</label>
 						    <span class="mif-mobile prepend-icon"></span>
-						    <input type="text">
+						    <input type="text" value="'.$infoClient->getTelephone2().'"/>
 						</div>
 					</div>
 				</div>
@@ -129,7 +128,7 @@ class ClientView
 				<div class="row cell-auto-size">
 					<div class="input-control textarea full-size">
 						<label>Commentaire</label>
-					    <textarea></textarea>
+					    <textarea>'.$infoClient->getCommentaire().'</textarea>
 					</div>
 				</div>
 			</form>

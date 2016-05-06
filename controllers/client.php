@@ -12,10 +12,14 @@ class Controller_Client
 			case 'GET' :
 				try{
 					require_once('views/ClientView.class.php');
-					
+					require_once('models/ModelClient.class.php');
+					$modelC = new ModelClient();
+					$id = 3;
+					$clientData = $modelC->getInfoClient($id);
+
 					$clientV = new ClientView();
-					$test = $clientV->clientInfo("", "");
-					$clientV->show($test);
+					$htmlAccordion = $clientV->clientInfo($clientData,"");
+					$clientV->show($htmlAccordion);
 
 				}catch(Exception $e){
 					echo "Erreur dans la tentative d'affichage des informations des clients";
