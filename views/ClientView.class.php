@@ -8,8 +8,8 @@ class ClientView
 	{
 		$html="";
 		$html.='
-	
-            <div class="accordion" data-role="accordion">
+		<div id="ensembleAccordion">
+            <div id="clientAccordion" class="accordion" data-role="accordion">
 			    <div class="frame active">
 			        <div class="heading">Informations sur le client</div>
 			        <div class="content">Frame content</div>
@@ -20,7 +20,7 @@ class ClientView
 			        <div class="content">Frame content</div>
 			    </div>
 			</div>
-		
+		</div>
 		';
 		return $html;
 	}

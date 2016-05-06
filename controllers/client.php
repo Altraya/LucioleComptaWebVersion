@@ -22,7 +22,7 @@ class Controller_Client
 				}
 				
 				break;
-			case 'POST' :	
+			case 'POST' :
 				//Action à faire grace à la page
 				//Utilisation des fonction du model ici
 		}
