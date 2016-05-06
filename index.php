@@ -120,6 +120,7 @@
 		<link href="//cdn.datatables.net/responsive/1.0.3/css/dataTables.responsive.css">
 
 
+
 		<script src="<?=ADDRESSCSS ?>/js/jquery.min.js"></script>
     	<script src="<?=ADDRESSCSS ?>/js/metro.js"></script>
     	<script src="<?=ADDRESSCSS ?>/js/datatables.min.js"></script>

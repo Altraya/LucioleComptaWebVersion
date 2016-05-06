@@ -19,9 +19,9 @@ class Controller_Ctrl
 				}
 				
 				break;
-			case 'POST' :	
-				//Action à faire grace à la page
-				//Utilisation des fonction du model ici
+			case 'POST' :
+				//atterit ici quand on veut editer ou supprimer un client / un article / une facture
+				
 		}
 	}
 }

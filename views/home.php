@@ -17,7 +17,6 @@ class homeView
 		data-overlay-color="op-dark" 
 		data-overlay-click-close="true"
 		>
-            <h1>Simple dialog</h1>
             <p id="dialogContent">
                 This dialog with colored overlay
             </p>
